@@ -1,8 +1,9 @@
 # Path Planning through Multi-Agent Reinforcement Learning in Dynamic Environments
-This project contains the implementation of a multi-agent reinforcement learning (MARL) system for path planning in dynamic environments. The implementation is built using C++ and uses Python for visualizing the results. The implementation is mostly divided into classes that represent different components of the system, such as the A* algorithm, the environment, the learning algorithms, and the visualization tool. Our implementation supports parallel processing of different sib-environments, as well as the parallel processing of agents in a single sub-environment, used by the federated Q-learning algorithm. 
+This project contains the implementation of a multi-agent reinforcement learning (MARL) system for path planning in dynamic environments. The implementation is built using C++ and uses Python for visualizing the results. The implementation is mostly divided into classes that represent different components of the system, such as the A* algorithm, the environment, the learning algorithms, and the visualization tool. Our implementation supports parallel processing of different sub-environments, as well as the parallel processing of agents in a single sub-environment, used by the federated Q-learning algorithm. 
 
 ## Installing the project
-1. To install the project, either fork it directly from GitHub or download it as a zip file via the green "Code" button on the top right of the repository page. If you choose to download it as a zip file, extract the contents to your desired location.
+1. To install the project, either fork it directly from GitHub or download it as a zip file via the green `Code` button on the top right of the repository page. If you choose to download it as a zip file, extract the contents to your desired location.
+
 2. Navigate to the project root directory in your terminal.
 
 ## Project Structure
@@ -24,7 +25,7 @@ project-root/
 |   |-- policyvisualizer.(h|cpp)    # PolicyVisualizer class, used to visualize the policies of the agents in the environment.
 |   |-- singleagent.(h|cpp)         # Single agent Q-learning implementation.
 |   |-- startstats.(h|cpp)          # StartStats class, used when selecting the starting positions of the agents (prioritized replay).
-|   |-- table.(h|cpp)               # Table class, used as the Q-table for the agents (three dimensional vector).
+|   |-- table.(h|cpp)               # Table class, used as the Q-table for the agents (three-dimensional vector).
 |   |-- testpolicy.(h|cpp)          # Test the learned policy of the agents in the environment.
 |   |-- threadresult.h              # ThreadResult class, used to store the results of threads created for parallel learning of agents.
 |   |-- treenode.(h|cpp)            # TreeNode class, representing a node in the hierarchical tree.
@@ -40,6 +41,7 @@ project-root/
    ```shell
    sudo apt-get install g++
    ```
+
 2. Ensure you have CMake installed on your system. If you are using the CLion IDE, it comes with CMake pre-installed. If you are using a different IDE or the command line, you can install CMake via your package manager. On Ubuntu, you can install it with the following command:
     ```shell
     sudo apt-get install cmake
@@ -50,60 +52,118 @@ project-root/
    ```shell
     sudo apt-get install libsfml-dev
    ```
-   Ensure that version 2.6 or higher is installed, as the project requires features from this version.
+   Ensure that version 2.6.1 (preferred) or higher is installed, as the project requires features from this version.
 
 2. Install the Python dependencies for visualizing the results. The visualization script requires the following Python packages:
    - `matplotlib`
    - `pandas`
-    
-   You can install these packages using pip:
-   ```shell
-   pip install matplotlib pandas
-   ```
-### Demo video
-...
+   
+   You can install these packages by creating a virtual environment and using pip to install the required packages. Here are the steps to take:
 
+   ```shell
+    python3 -m venv venv  # Create a virtual environment named 'venv'
+   ```
+   
+   ```shell
+    source venv/bin/activate  # Activate the virtual environment (Linux/Mac)
+   ```
+
+   ```shell
+   pip3 install matplotlib pandas  # Install the required Python packages using pip
+   ```
 
 ## Running the experiments
----
-...
+1. In the root directory of the project, open the CLion IDE via the following command in your terminal:
+   ```shell
+   clion .
+   ```
+2. When prompted, click Trust Project to allow the IDE to access the project files.
+3. When prompted with the Project Wizard, tick the checkbox to reload the CMake project on editing
+   `CMakeLists.txt` and click OK.
+4. Change the `CMAKE_RUNTIME_OUTPUT_DIRECTORY` variable in the `CMakeLists.txt` file to the
+   absolute path of the project’s root directory.
+5. Click the hammer icon to build the project (the initial build may take some time).
+6. Click the green play icon to start running the experiments.
 
-### Instructions
-...
-
-### Demo video
-...
+% video %
 
 ### Visualizing the results
-...
+1. Inspect both the generated `results.csv` and `results_detailed.csv` files in the project's root directory. 
+   - The `results.csv` file contains averages of the results of the environment simulations.
+   - The `results_detailed.csv` file contains detailed results of the environment simulations.
 
-#### Instructions
-...
+2. Set the `plots_dir` variable in the `visualizations.py` script to the desired output directory for the plots (set to `plots` in the demo).
 
+3. Run the `visualizations.py` script from the project's root directory to generate the plots from the results. You can run the script using the following command:
+   ```shell
+   python3 src/visualizations.py
+   ```
+
+4. The generated plots are saved in the `plots` directory.
+
+% video %
+
+## Modifying experiment settings
+1. In the `experiments.cpp` file, locate the `sizes`, `difficulties`, and `approaches` lists between lines 65 and 80.
+   - The `sizes` list contains the different environment sizes to be used in the experiments. You can modify this list to include other sizes.
+   - The `difficulties` list contains the different difficulty levels of the environments. You can modify this list to include other configurations.
+   - The `approaches` list contains the different approaches to be used in the experiments. You can remove any approach from this list, but no other approaches than these six are supported:
+     - `A* Static`
+     - `A* Oracle`
+     - `onlyTrainLeafNodes`
+     - `singleAgent`
+     - `fedAsynQ_EqAvg`
+     - `fedAsynQ_ImAvg`
 
 ## Running the edge case experiment
----
-...
+1. In the `experiments.cpp` file, locate the line that sets the seed (line 101) and change it to `srand(d +
+100)`, as indicated by the comment.
+2. Modify the `sizes` list to only include sizes 20 and 50. Leave the `difficulties` and `approaches` lists unchanged.
 
-### Instructions
-...
+3. Click the hammer icon to build the project again.
 
-### Demo video
-...
+4. Click the green play icon to start running the edge case experiment.
+
+5. The edge case example is the last environment that is run in the experiments, i.e., the hard 50x50 environment.
+
+% video %
 
 ### Visualizing the results
-...
+1. Inspect both the generated `results.csv` and `results_detailed.csv` files in the project's root directory.
+   - The `results.csv` file contains averages of the results of the edge case simulations.
+   - The `results_detailed.csv` file contains detailed results of the edge case simulations.
+2. Manually remove all entries from both the `results.csv` and `results_detailed.csv` files that are not related to the edge case environment (i.e., all entries except those with size 50x50 and hard difficulty).
+3. Set the `plots_dir` variable in the `visualizations.py` script to the desired output directory for the plots (`plots-edge-case`).
+4. Run the `visualizations.py` script from the project's root directory to generate the plots from the edge case results. You can run the script using the following command:
+   ```shell
+   python3 src/visualizations.py
+   ```
+5. The generated plots are saved in the `plots-edge-case` directory. Since the visualization script by default generates plots for the five different environment sizes and three difficulty levels, many of the generated plots will be empty. The only plots that contain data are the following:
+    - `adapt_time_box_50x50_hard.png`
+    - `adapt_time_line_hard.png`
+    - `avg_path_length_line_hard.png`
+    - `cumulative_adapt_time_50x50_hard.png`
+    - `initial_training_time_hard.png`
+    - `success_rate_line_hard.png`
+    - `success_rate_vs_timestep_50x50_hard.png`
 
-#### Instructions
-...
-
+5. The other plots can be ignored or simply deleted, as they do not contain any data to visualize.
 
 ## Enabling the policy tracker
----
-...
+1. To enable the policy tracker/visualization tool, set the argument of the `runFullExperiment` function in the `main.cpp` file to `true`.
 
-### Instructions
-...
+2. Choose appropriate environment sizes (e.g., 20x20 or 50x50) and one or multiple approaches for which the visualization is implemented (`singleAgent`, `fedAsynQ_EqAvg`, and `fedAsynQ_ImAvg`).
 
-### Demo video
-...
+3. Click the hammer icon to build the project again.
+
+4. Click the green play icon to start running the experiments with the policy tracker enabled.
+
+### Example 1
+The first example shows the visualization of the `singleAgent` approach in a 20x20 environment. The visualization clearly shows the most optimal action from each position/state in the environment.
+
+% video %
+
+### Example 2
+The second example shows the visualization of the `fedAsynQ_EqAvg` approach in a 50x50 environment. The movement of obstacles is still clearly visible, but the optimal actions are not shown as clearly as in the first example.
+
+% video %
