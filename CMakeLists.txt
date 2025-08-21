@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.30)
 
-project(MCA4MARL)
+project(MARL4DynaPath)
 
 set(CMAKE_CXX_STANDARD 20)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "~/Documents/MCA4MARL/")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "~/Documents/MARL4DynaPath/")
 
 add_executable(main
         # .h files
