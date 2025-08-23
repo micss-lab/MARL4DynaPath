@@ -85,7 +85,7 @@ project-root/
 5. Click the hammer icon to build the project (the initial build may take some time).
 6. Click the green play icon to start running the experiments.
 
-% video %
+https://github.com/user-attachments/assets/1b4bf3fa-1338-422d-8258-9aa2d56e07d9
 
 ### Visualizing the results
 1. Inspect both the generated `results.csv` and `results_detailed.csv` files in the project's root directory. 
@@ -101,7 +101,7 @@ project-root/
 
 4. The generated plots are saved in the `plots` directory.
 
-% video %
+https://github.com/user-attachments/assets/464623a7-13a0-456e-b78f-0de0570619f3
 
 ## Modifying experiment settings
 1. In the `experiments.cpp` file, locate the `sizes`, `difficulties`, and `approaches` lists between lines 65 and 80.
@@ -126,7 +126,7 @@ project-root/
 
 5. The edge case example is the last environment that is run in the experiments, i.e., the hard 50x50 environment.
 
-% video %
+https://github.com/user-attachments/assets/c5a01ea8-5f8f-4031-8634-b73cbcab861c
 
 ### Visualizing the results
 1. Inspect both the generated `results.csv` and `results_detailed.csv` files in the project's root directory.
@@ -161,9 +161,9 @@ project-root/
 ### Example 1
 The first example shows the visualization of the `singleAgent` approach in a 20x20 environment. The visualization clearly shows the most optimal action from each position/state in the environment.
 
-% video %
+https://github.com/user-attachments/assets/4043575e-ac4a-4f75-aa6c-c79f9ff4fafa
 
 ### Example 2
 The second example shows the visualization of the `fedAsynQ_EqAvg` approach in a 50x50 environment. The movement of obstacles is still clearly visible, but the optimal actions are not shown as clearly as in the first example.
 
-% video %
+https://github.com/user-attachments/assets/bee9d8e4-07e1-4b2c-98ee-45868074242f
