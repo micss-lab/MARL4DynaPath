@@ -14,7 +14,7 @@ void Experiments::simulateEnvironmentChanges(const TreeNode *root, const int num
 
     // Simulate the environment changes
     for (int step = 0; step < numSteps; ++step) {
-        // Randomly select an obstacle to move
+        // Randomly select an obstacle to move (based on the set seed value)
         if (!obstaclePositions.empty()) {
             const int randomIndex = rand() % obstaclePositions.size();
             int oldRow = obstaclePositions[randomIndex].first;
@@ -31,7 +31,7 @@ void Experiments::simulateEnvironmentChanges(const TreeNode *root, const int num
                 {oldRow - 1, oldCol - 1} // Move NW
             };
 
-            // Filter valid moves
+            // Filter valid moves within bounds and to free space
             vector<pair<int, int> > validMoves;
             for (const auto &move: moves) {
                 const int newRow = move.first, newCol = move.second;
@@ -119,19 +119,19 @@ void Experiments::runFullExperiment(bool visualize) {
             auto *tempRoot = new TreeNode(initialMaze, size, size, 0, 0, size - 1, size - 1, nullptr, true);
             tempRoot->createSubEnvironments(initialMaze);
 
-            // Simulate change positions upfront
+            // Determine the number of changes per time step up front
             for (int t = 0; t < maxTimeSteps; ++t) {
                 int r = rand() % 1000;
                 int numChanges;
                 if (r < 900) numChanges = 1;
-                else if (r < 960) numChanges = 2;
-                else if (r < 980) numChanges = 3;
-                else if (r < 990) numChanges = 4;
-                else if (r < 995) numChanges = 5;
-                else if (r < 997) numChanges = 6;
-                else if (r < 998) numChanges = 7;
-                else if (r < 999) numChanges = 8;
-                else if (r < 9995) numChanges = 9;
+                else if (r < 950) numChanges = 2;
+                else if (r < 970) numChanges = 3;
+                else if (r < 980) numChanges = 4;
+                else if (r < 987) numChanges = 5;
+                else if (r < 992) numChanges = 6;
+                else if (r < 995) numChanges = 7;
+                else if (r < 997) numChanges = 8;
+                else if (r < 999) numChanges = 9;
                 else numChanges = 10;
                 changeSequence[t].first = numChanges;
                 simulateEnvironmentChanges(tempRoot, numChanges, changeSequence[t].second);

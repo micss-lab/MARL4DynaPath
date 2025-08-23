@@ -130,11 +130,11 @@ int TreeNode::selectAction(const int x, const int y, const double epsilon) const
         {-1, -1} // NW
     };
 
+    // Filter valid actions based on boundaries of the subenvironment
     vector<int> validActions;
     for (int i = 0; i < constants::ACTION_COUNT; ++i) {
         const int newX = x + moves[i].first;
         const int newY = y + moves[i].second;
-        // Filter valid actions based on boundaries of the subenvironment
         if (newX >= startRow && newX <= endRow && newY >= startCol && newY <= endCol) {
             validActions.push_back(i);
         }
@@ -165,7 +165,7 @@ vector<int> TreeNode::selectTopKActions(const vector<double> &qValues, const int
     const vector<pair<int, int> > moves = {{-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}};
     vector<pair<double, int> > validQValues;
 
-    // Collect valid actions with Q-values
+    // Collect valid actions based on rows and cols boundaries
     for (int i = 0; i < constants::ACTION_COUNT; ++i) {
         const int newX = x + moves[i].first;
         const int newY = y + moves[i].second;
@@ -199,7 +199,7 @@ tuple<bool, int, vector<pair<int, int> > > TreeNode::findValidPath(const int sta
     toExplore.push({startX, startY, 0, {{startX, startY}}});
     visited.insert({startX, startY});
 
-    // BFS to find a valid path
+    // Loop to find valid path
     while (!toExplore.empty()) {
         auto [x, y, steps, path] = toExplore.front();
         toExplore.pop();
