@@ -161,9 +161,9 @@ https://github.com/user-attachments/assets/c5a01ea8-5f8f-4031-8634-b73cbcab861c
 ### Example 1
 The first example shows the visualization of the `singleAgent` approach in a 20x20 environment. The visualization clearly shows the most optimal action from each position/state in the environment.
 
-https://github.com/user-attachments/assets/4043575e-ac4a-4f75-aa6c-c79f9ff4fafa
+https://github.com/user-attachments/assets/534acb24-51e7-46a6-8c38-40f10544a70e
 
 ### Example 2
 The second example shows the visualization of the `fedAsynQ_EqAvg` approach in a 50x50 environment. The movement of obstacles is still clearly visible, but the optimal actions are not shown as clearly as in the first example.
 
-https://github.com/user-attachments/assets/bee9d8e4-07e1-4b2c-98ee-45868074242f
+https://github.com/user-attachments/assets/70fcc36a-f2f2-4b5b-8065-6a1f4c74015d
