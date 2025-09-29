@@ -167,3 +167,6 @@ https://github.com/user-attachments/assets/534acb24-51e7-46a6-8c38-40f10544a70e
 The second example shows the visualization of the `fedAsynQ_EqAvg` approach in a 50x50 environment. The movement of obstacles is still clearly visible, but the optimal actions are not shown as clearly as in the first example.
 
 https://github.com/user-attachments/assets/70fcc36a-f2f2-4b5b-8065-6a1f4c74015d
+
+## License
+This project is released under the MIT License. Please review the [License file](https://github.com/micss-lab/MARL4DynaPath/blob/main/LICENSE) for more details.
